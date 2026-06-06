@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="olio · أويلو — قهوة مختصة في تبوك. عزّنا بجودتنا. قهوة محمّصة بإتقان، أصناف مختارة بعناية، وأجواء أنيقة تبدأ منها لحظتك.">
+<title>olio · أويلو — قهوة مختصة في تبوك</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Italiana&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+
+<style>
+:root{
+  --cream:#EFE7DA;
+  --cream2:#E7DDCC;
+  --paper:#F6F0E4;
+  --ink:#2B232A;
+  --burgundy:#6E2536;
+  --burgundy-dk:#561C29;
+  --gold:#B0844A;
+  --gold-dk:#937032;
+  --pink:#CFA0A8;
+  --muted:#948576;
+  --line:rgba(43,35,42,.15);
+  --f:'Tajawal',sans-serif;
+  --f-d:'Italiana',serif;
+  --f-cal:'Aref Ruqaa',serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.9;font-weight:300}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 32px}
+::selection{background:var(--burgundy);color:var(--cream)}
+
+.rv{opacity:0;transform:translateY(36px);transition:opacity 1.05s var(--ease),transform 1.05s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+.eyebrow{font-family:var(--f-d);font-size:1rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-dk);display:inline-flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyebrow::before{content:'';width:30px;height:1px;background:var(--gold);display:inline-block}
+.h-sec{font-family:var(--f);font-weight:800;font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.25;color:var(--ink);letter-spacing:-.01em}
+.h-sec.en{font-family:var(--f-d);font-weight:400;text-transform:lowercase;letter-spacing:.01em}
+
+.logo{font-family:var(--f-d);font-size:1.85rem;letter-spacing:.02em;color:#fff;line-height:1;transition:color .4s var(--ease)}
+#nav.scrolled .logo{color:var(--burgundy)}
+
+/* ============ NAV ============ */
+#nav{position:fixed;inset:0 0 auto 0;z-index:1000;padding:26px 0;transition:all .55s var(--ease)}
+#nav.scrolled{background:rgba(239,231,218,.92);backdrop-filter:blur(16px);padding:15px 0;box-shadow:0 1px 0 var(--line)}
+#nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:.94rem;font-weight:400;color:rgba(255,255,255,.85);position:relative;transition:color .35s}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;right:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+.nav-links a:hover::after{width:100%}
+#nav.scrolled .nav-links a{color:var(--ink)}
+.nav-cta{font-size:.86rem;font-weight:500;padding:11px 28px;border-radius:2px;background:#fff;color:var(--burgundy);transition:all .4s var(--ease)}
+#nav.scrolled .nav-cta{background:var(--burgundy);color:#fff}
+.nav-cta:hover{background:var(--burgundy-dk)!important;color:#fff;transform:translateY(-1px)}
+.burger{display:none;flex-direction:column;gap:5px;padding:6px}
+.burger span{width:26px;height:1.5px;background:#fff;border-radius:2px;transition:.35s}
+#nav.scrolled .burger span{background:var(--burgundy)}
+
+#mnav{position:fixed;inset:0;z-index:2000;background:var(--burgundy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;opacity:0;pointer-events:none;transition:opacity .45s var(--ease)}
+#mnav.open{opacity:1;pointer-events:all}
+#mnav a{font-family:var(--f-d);font-size:2rem;color:var(--cream)}
+#mnav a:hover{color:var(--gold)}
+#mnav .logo{position:absolute;top:26px;right:32px;color:var(--cream)}
+.mclose{position:absolute;top:32px;left:32px;font-size:1.7rem;color:var(--cream)}
+
+/* ============ HERO ============ */
+#hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--burgundy-dk)}
+.hero-bg{position:absolute;inset:0;background:url('img/interior-hero.jpg') center 38%/cover no-repeat;transform:scale(1.08);animation:hz 15s var(--ease) forwards}
+@keyframes hz{to{transform:scale(1)}}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,20,26,.5)0%,rgba(40,20,26,.28)42%,rgba(40,20,26,.88)100%)}
+.hero-inner{position:relative;z-index:3;width:100%;padding-bottom:9vh;text-align:center}
+.hero-name{font-family:var(--f-d);font-size:clamp(4rem,15vw,10rem);color:#fff;line-height:.95;text-shadow:0 6px 50px rgba(0,0,0,.4);text-transform:lowercase}
+.hero-ar-name{font-weight:500;font-size:clamp(1.3rem,3.4vw,1.9rem);color:var(--cream);margin-top:4px;letter-spacing:.04em}
+.hero-tagline{font-family:var(--f-cal);font-weight:700;font-size:clamp(1.6rem,3.6vw,2.5rem);color:var(--gold);margin-top:18px;line-height:1.6}
+.hero-desc{font-weight:300;font-size:clamp(1rem,1.8vw,1.18rem);color:rgba(255,255,255,.85);max-width:540px;margin:14px auto 0;line-height:2}
+.hero-actions{display:flex;gap:16px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:500;font-size:.98rem;padding:15px 36px;border-radius:2px;transition:all .45s var(--ease)}
+.btn-main{background:var(--gold);color:#fff}
+.btn-main:hover{background:#fff;color:var(--burgundy);transform:translateY(-2px);box-shadow:0 16px 34px rgba(176,132,74,.4)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.hero-scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.55);font-family:var(--f-d);font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bob 2.4s infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* ============ MARQUEE ============ */
+.marq{background:var(--burgundy);color:var(--cream);padding:16px 0;overflow:hidden}
+.marq-t{display:flex;white-space:nowrap;animation:marq 38s linear infinite;width:max-content}
+.marq-i{display:inline-flex;align-items:center;gap:18px;padding:0 28px;font-family:var(--f-d);font-size:1.1rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
+.marq-i i{font-size:.5rem;color:var(--gold)}
+@keyframes marq{to{transform:translateX(50%)}}
+
+/* ============ INTRO ============ */
+#intro{padding:140px 0;background:var(--cream)}
+.intro-grid{display:grid;grid-template-columns:1fr 1.04fr;gap:84px;align-items:center}
+.intro-imgs{position:relative}
+.intro-imgs .im1{border-radius:3px;width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:0 36px 80px rgba(43,35,42,.24)}
+.intro-imgs .im2{position:absolute;bottom:-46px;right:-44px;width:48%;aspect-ratio:3/4;object-fit:cover;border-radius:3px;border:8px solid var(--cream);box-shadow:0 24px 50px rgba(43,35,42,.26)}
+.intro-tag{position:absolute;top:26px;left:-16px;background:var(--burgundy);color:var(--cream);font-family:var(--f-d);font-size:1rem;letter-spacing:.1em;padding:10px 24px;border-radius:2px;text-transform:lowercase}
+.intro-body .lead{font-family:var(--f-cal);font-size:1.7rem;color:var(--burgundy);font-weight:700}
+.intro-body p{font-size:1.09rem;color:#46414a;line-height:2.2;margin-bottom:22px;font-weight:300}
+.intro-feats{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap}
+.feat{display:flex;align-items:center;gap:12px}
+.feat i{font-size:1.5rem;color:var(--burgundy)}
+.feat span{font-weight:500;font-size:.98rem}
+
+/* ============ TAGLINE STRIP ============ */
+#pledge{padding:110px 0;background:var(--burgundy);color:var(--cream);text-align:center}
+.pledge-in{max-width:820px;margin:0 auto}
+.pledge-in .ic{font-size:1.8rem;color:var(--gold);margin-bottom:22px;display:block}
+.pledge-in .ar{font-family:var(--f-cal);font-weight:700;font-size:clamp(2rem,5vw,3.4rem);line-height:1.7;color:#fff}
+.pledge-in .en{font-family:var(--f-d);font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,231,218,.6);margin-top:18px}
+
+/* ============ MENU / SELECTION ============ */
+#menu{padding:140px 0;background:var(--paper)}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 60px}
+.sec-head p{color:var(--muted);margin-top:16px;font-size:1.05rem;font-weight:300}
+.sel-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;max-width:920px;margin:0 auto}
+.sel h3{font-family:var(--f);font-size:1.5rem;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.sel h3 i{color:var(--burgundy);font-size:1.3rem}
+.sel .en{font-family:var(--f-d);font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.sel-row{display:flex;align-items:baseline;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.sel-row .nm{font-weight:500;font-size:1.05rem;color:var(--ink)}
+.sel-row .nm small{font-weight:300;color:var(--muted);font-size:.82rem;margin-right:6px}
+.sel-row .dot{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-5px)}
+.sel-row .tg{font-family:var(--f-d);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk);white-space:nowrap}
+.menu-note{text-align:center;margin-top:54px;color:var(--muted);font-size:.98rem;font-weight:300}
+.menu-note b{color:var(--burgundy);font-weight:500}
+
+/* ============ GALLERY ============ */
+#atmos{padding:140px 0;background:var(--cream)}
+.gal{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:215px;gap:16px;margin-top:58px}
+.g{overflow:hidden;border-radius:3px;cursor:pointer;position:relative}
+.g img{width:100%;height:100%;object-fit:cover;transition:transform .95s var(--ease)}
+.g::after{content:'';position:absolute;inset:0;background:rgba(43,35,42,0);transition:background .45s}
+.g:hover::after{background:rgba(43,35,42,.18)}
+.g:hover img{transform:scale(1.05)}
+.g .zoom{position:absolute;bottom:15px;left:15px;width:40px;height:40px;border-radius:50%;background:var(--burgundy);display:flex;align-items:center;justify-content:center;color:var(--cream);opacity:0;transition:opacity .45s;z-index:2}
+.g:hover .zoom{opacity:1}
+.g1{grid-column:span 5;grid-row:span 2}
+.g2{grid-column:span 4;grid-row:span 2}
+.g3{grid-column:span 3;grid-row:span 2}
+.g4{grid-column:span 4;grid-row:span 2}
+.g5{grid-column:span 4;grid-row:span 2}
+.g6{grid-column:span 4;grid-row:span 2}
+
+/* ============ STORY ============ */
+#story{position:relative;padding:170px 0;background:url('img/interior-counter.jpg') center/cover fixed no-repeat;color:#fff;text-align:center}
+#story::before{content:'';position:absolute;inset:0;background:rgba(40,20,26,.74)}
+.story-in{position:relative;z-index:2;max-width:780px;margin:0 auto}
+.story-in .ic{font-size:2rem;color:var(--gold);margin-bottom:20px;display:block}
+.story-in .q{font-family:var(--f-d);font-size:clamp(1.8rem,4vw,3rem);line-height:1.4;color:#fff;text-transform:lowercase;letter-spacing:.02em}
+.story-in .ar{font-weight:300;font-size:1.1rem;color:rgba(255,255,255,.82);margin-top:22px;line-height:2}
+
+/* ============ REVIEWS ============ */
+#reviews{padding:140px 0;background:var(--paper)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:58px}
+.rev{background:var(--cream);border:1px solid var(--line);border-radius:3px;padding:38px 32px;position:relative}
+.rev .stars{color:var(--gold);font-size:1rem;display:flex;gap:3px;margin-bottom:18px}
+.rev .tx{font-size:1.04rem;line-height:2.05;color:#46414a;margin-bottom:24px;font-weight:300}
+.rev .who{display:flex;align-items:center;gap:14px}
+.rev .av{width:48px;height:48px;border-radius:50%;background:var(--burgundy);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:1.2rem}
+.rev .nm{font-weight:500;font-size:.98rem}
+.rev .src{font-size:.82rem;color:var(--muted);font-weight:300}
+.rev .qmark{position:absolute;top:18px;left:28px;font-family:var(--f-d);font-size:4.5rem;color:var(--burgundy);opacity:.14;line-height:1}
+.rev-foot{text-align:center;margin-top:46px;color:var(--muted);font-weight:300}
+.rev-foot b{color:var(--ink);font-weight:500}
+
+/* ============ LOCATION ============ */
+#loc{padding:140px 0;background:var(--cream)}
+.loc-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:stretch}
+.loc-info .row{display:flex;gap:18px;padding:24px 0;border-bottom:1px solid var(--line)}
+.loc-info .row:first-of-type{padding-top:0}
+.loc-ic{width:48px;height:48px;border-radius:50%;background:var(--burgundy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.loc-info .row strong{display:block;font-family:var(--f);font-size:1.05rem;margin-bottom:2px;font-weight:700}
+.loc-info .row p{color:var(--muted);font-size:.96rem;line-height:1.75;font-weight:300}
+.loc-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.btn-burg{background:var(--burgundy);color:#fff}
+.btn-burg:hover{background:var(--burgundy-dk);transform:translateY(-2px)}
+.btn-line{border:1px solid var(--burgundy);color:var(--burgundy)}
+.btn-line:hover{background:var(--burgundy);color:#fff}
+.map-wrap{border-radius:3px;overflow:hidden;box-shadow:0 28px 60px rgba(43,35,42,.2);min-height:440px}
+.map-wrap iframe{width:100%;height:100%;min-height:440px;border:0;display:block;filter:grayscale(.3) sepia(.2)}
+
+/* ============ FOOTER ============ */
+footer{background:var(--burgundy-dk);color:var(--cream);padding:88px 0 36px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:54px;margin-bottom:56px}
+.foot-brand .logo{color:var(--cream);font-size:2.4rem;margin-bottom:12px}
+.foot-brand p{color:rgba(239,231,218,.6);font-size:.96rem;line-height:1.95;max-width:300px;font-weight:300}
+.foot-soc{display:flex;gap:12px;margin-top:24px}
+.foot-soc a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(239,231,218,.8);font-size:1.15rem;transition:all .4s}
+.foot-soc a:hover{background:var(--gold);color:#fff;transform:translateY(-3px)}
+.foot-col h4{font-family:var(--f);font-size:1.1rem;margin-bottom:20px;font-weight:700}
+.foot-col li{margin-bottom:12px}
+.foot-col a{color:rgba(239,231,218,.6);font-size:.94rem;transition:color .3s;font-weight:300}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-bottom p{font-size:.85rem;color:rgba(239,231,218,.45);font-weight:300}
+.foot-bottom .en{font-family:var(--f-d);color:var(--gold);letter-spacing:.16em;font-size:.85rem;text-transform:uppercase}
+
+/* ============ FLOATS + LIGHTBOX ============ */
+.floats{position:fixed;bottom:28px;left:28px;z-index:900;display:flex;flex-direction:column;gap:12px}
+.fbtn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 10px 26px rgba(0,0,0,.24);transition:transform .4s var(--ease)}
+.fbtn:hover{transform:translateY(-3px) scale(1.05)}
+.f-map{background:var(--burgundy);color:#fff}
+.f-top{background:var(--ink);color:var(--gold);opacity:0;pointer-events:none;transition:opacity .4s,transform .4s}
+.f-top.show{opacity:1;pointer-events:all}
+#lb{position:fixed;inset:0;z-index:5000;background:rgba(28,16,20,.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+#lb.open{opacity:1;pointer-events:all}
+#lb img{max-width:90vw;max-height:88vh;border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#lb .x{position:absolute;top:24px;left:24px;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center}
+#lb .ar-btn{position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:background .3s}
+#lb .ar-btn:hover{background:rgba(255,255,255,.25)}
+#lb .prev{right:24px}
+#lb .next{left:24px}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .intro-grid{grid-template-columns:1fr;gap:100px}
+  .intro-imgs{max-width:480px;margin:0 auto}
+  .sel-grid{grid-template-columns:1fr;gap:54px;max-width:480px}
+  .loc-grid{grid-template-columns:1fr;gap:44px}
+  #story{background-attachment:scroll}
+}
+@media(max-width:820px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  #intro,#menu,#atmos,#reviews,#loc{padding:90px 0}
+  #story,#pledge{padding:120px 0}
+  .sec-head{margin-bottom:48px}
+  .rev-grid{grid-template-columns:1fr;max-width:480px;margin:58px auto 0}
+  .foot-grid{grid-template-columns:1fr;gap:40px}
+  .gal{grid-auto-rows:165px}
+  .g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 6;grid-row:span 2}
+}
+@media(max-width:520px){
+  .wrap{padding:0 20px}
+  #intro,#menu,#atmos,#reviews,#loc{padding:72px 0}
+  .intro-grid{gap:80px}
+  .intro-imgs{max-width:340px}
+  .intro-imgs .im2{right:0;bottom:-32px;border-width:6px}
+  .intro-body p{font-size:1rem}
+  .hero-actions{flex-direction:column}
+  .btn{width:100%;justify-content:center}
+  .story-in .q{font-size:1.6rem}
+  .pledge-in .ar{font-size:1.8rem}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .g3,.g6{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap">
+    <a href="#hero" class="logo">olio</a>
+    <ul class="nav-links">
+      <li><a href="#intro">عن أويلو</a></li>
+      <li><a href="#menu">المختارات</a></li>
+      <li><a href="#atmos">الأجواء</a></li>
+      <li><a href="#reviews">آراؤكم</a></li>
+      <li><a href="#loc">الموقع</a></li>
+    </ul>
+    <a href="#loc" class="nav-cta">زورونا</a>
+    <button class="burger" id="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div id="mnav">
+  <a href="#hero" class="logo">olio</a>
+  <button class="mclose" id="mclose" aria-label="إغلاق">✕</button>
+  <a href="#intro" class="ml">عن أويلو</a>
+  <a href="#menu" class="ml">المختارات</a>
+  <a href="#atmos" class="ml">الأجواء</a>
+  <a href="#reviews" class="ml">آراؤكم</a>
+  <a href="#loc" class="ml">الموقع</a>
+</div>
+
+<!-- HERO -->
+<header id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner wrap">
+    <h1 class="hero-name">olio</h1>
+    <div class="hero-ar-name">أويلو · قهوة مختصة</div>
+    <p class="hero-tagline">عِزُّنا بجودتنا</p>
+    <p class="hero-desc">في قلب تبوك، حيث تُحمَّص القهوة بإتقان وتُختار التفاصيل بعناية — تبدأ لحظتك من فنجان.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-main"><i class="ph-bold ph-coffee"></i> المختارات</a>
+      <a href="#atmos" class="btn btn-ghost"><i class="ph-bold ph-images"></i> أجواء المكان</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><i class="ph ph-arrow-down"></i></div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marq" aria-hidden="true">
+  <div class="marq-t">
+    <span class="marq-i">Specialty Coffee <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">قهوة مختصة <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">your moment starts here <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">عِزُّنا بجودتنا <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">Espresso · V60 · Matcha <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">Specialty Coffee <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">قهوة مختصة <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">your moment starts here <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">عِزُّنا بجودتنا <i class="ph-fill ph-circle"></i></span>
+    <span class="marq-i">Espresso · V60 · Matcha <i class="ph-fill ph-circle"></i></span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="wrap intro-grid">
+    <div class="intro-imgs rv">
+      <img src="img/flat-white.jpg" class="im1" alt="قهوة أويلو">
+      <img src="img/matcha.jpg" class="im2" alt="ماتشا أويلو">
+      <span class="intro-tag">olio</span>
+    </div>
+    <div class="intro-body rv">
+      <span class="eyebrow">عن أويلو · About</span>
+      <h2 class="h-sec">حكاية تبدأ<br>من فنجان</h2>
+      <p style="margin-top:24px"><span class="lead">أويلو</span> ليست قهوةً تُشرب فحسب، بل لحظةٌ تُعاش. اخترنا لكل تفصيلةٍ مكانها — من حبّة البن المحمّصة بإتقان، إلى الكوب الذي يصل إليك، إلى الزاوية التي تجلس فيها.</p>
+      <p>قهوة مختصة بنكهةٍ غنيّة ومتوازنة، وحلويات مختارة بعناية، في مساحةٍ أنيقة تجمع بين الذوق الرفيع والدفء. هنا، الجودة ليست وعدًا… بل عزّنا.</p>
+      <div class="intro-feats">
+        <div class="feat"><i class="ph-bold ph-coffee-bean"></i><span>تحميص بإتقان</span></div>
+        <div class="feat"><i class="ph-bold ph-sparkle"></i><span>تفاصيل منتقاة</span></div>
+        <div class="feat"><i class="ph-bold ph-armchair"></i><span>أجواء أنيقة</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLEDGE -->
+<section id="pledge">
+  <div class="pledge-in wrap rv">
+    <i class="ph-fill ph-seal-check ic"></i>
+    <p class="ar">عِزُّنا بجودتنا</p>
+    <p class="en">Quality is our pride</p>
+  </div>
+</section>
+
+<!-- MENU / SELECTION -->
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">المختارات · Selection</span>
+      <h2 class="h-sec">من قائمتنا</h2>
+      <p>مختاراتٌ من قهوتنا المختصة وحلوياتنا المحضّرة بعناية.</p>
+    </div>
+
+    <div class="sel-grid">
+      <div class="sel rv">
+        <h3><i class="ph-fill ph-coffee"></i> القهوة</h3>
+        <div class="en">Coffee</div>
+        <div class="sel-row"><span class="nm">إسبريسو</span><span class="dot"></span><span class="tg">Signature</span></div>
+        <div class="sel-row"><span class="nm">فلات وايت</span><span class="dot"></span><span class="tg">Classic</span></div>
+        <div class="sel-row"><span class="nm">في ٦٠ <small>V60</small></span><span class="dot"></span><span class="tg">Filter</span></div>
+        <div class="sel-row"><span class="nm">قهوة اليوم <small>حار / بارد</small></span><span class="dot"></span><span class="tg">Drip</span></div>
+        <div class="sel-row"><span class="nm">قهوة يمنية <small>محاصيل مختارة</small></span><span class="dot"></span><span class="tg">Origin</span></div>
+        <div class="sel-row"><span class="nm">ماتشا لاتيه</span><span class="dot"></span><span class="tg">Popular</span></div>
+      </div>
+      <div class="sel rv">
+        <h3><i class="ph-fill ph-cake"></i> الحلا</h3>
+        <div class="en">Sweets</div>
+        <div class="sel-row"><span class="nm">شكو بايتس</span><span class="dot"></span><span class="tg">Signature</span></div>
+        <div class="sel-row"><span class="nm">تشيز كيك بيكان</span><span class="dot"></span><span class="tg">Popular</span></div>
+        <div class="sel-row"><span class="nm">تيراميسو</span><span class="dot"></span><span class="tg">Classic</span></div>
+        <div class="sel-row"><span class="nm">بيكان بايتس</span><span class="dot"></span><span class="tg">Loved</span></div>
+        <div class="sel-row"><span class="nm">كرواسون ومعجنات</span><span class="dot"></span><span class="tg">Fresh</span></div>
+        <div class="sel-row"><span class="nm">حلويات اليوم</span><span class="dot"></span><span class="tg">Daily</span></div>
+      </div>
+    </div>
+    <p class="menu-note rv">للاطّلاع على <b>القائمة الكاملة والأسعار</b>، تفضّلوا بزيارتنا — الأصناف تتجدّد بحسب الموسم.</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="atmos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">الأجواء · Atmosphere</span>
+      <h2 class="h-sec">لمحات من أويلو</h2>
+      <p>أناقةٌ في كل زاوية، وتفاصيل تُروى بهدوء. صور حقيقية من داخل المكان.</p>
+    </div>
+    <div class="gal">
+      <div class="g g1" data-src="img/interior-hero.jpg" data-cap="جلسات أويلو الأنيقة"><img src="img/interior-hero.jpg" alt="داخل أويلو"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g2" data-src="img/flat-white.jpg" data-cap="فلات وايت أويلو"><img src="img/flat-white.jpg" alt="قهوة أويلو"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g3" data-src="img/matcha.jpg" data-cap="ماتشا أويلو"><img src="img/matcha.jpg" alt="ماتشا أويلو"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g4" data-src="img/counter-pastry.jpg" data-cap="عرض الحلويات"><img src="img/counter-pastry.jpg" alt="حلويات أويلو"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g5" data-src="img/cup-brand.jpg" data-cap="أكواب أويلو"><img src="img/cup-brand.jpg" alt="كوب أويلو"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+      <div class="g g6" data-src="img/drip.jpg" data-cap="تحضير القطرة"><img src="img/drip.jpg" alt="قطرة أويلو"><span class="zoom"><i class="ph ph-magnifying-glass-plus"></i></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-in wrap rv">
+    <i class="ph-fill ph-coffee ic"></i>
+    <p class="q">your moment<br>starts here</p>
+    <p class="ar">في أويلو، نصنع لكل ضيفٍ لحظته الخاصة — فنجانٌ محضّرٌ بإتقان، وأجواءٌ تليق بذائقتك.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">آراؤكم · Reviews</span>
+      <h2 class="h-sec">ماذا قال زوّارنا</h2>
+      <p>مراجعات حقيقية من زوّار أويلو على خرائط Google.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev rv">
+        <span class="qmark">”</span>
+        <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+        <p class="tx">تجربة جميلة بكل التفاصيل. جربت القهوة المختصة، محمّصة بإتقان ونكهتها غنية ومتوازنة تُبرز جودة البن، والأروع كان «شكو بايتس»! أويلو صار من أماكني المفضّلة.</p>
+        <div class="who"><div class="av">م</div><div><div class="nm">مشعل</div><div class="src">Local Guide · Google</div></div></div>
+      </div>
+      <div class="rev rv">
+        <span class="qmark">”</span>
+        <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+        <p class="tx">تجربة جميلة من كل النواحي! الموظفون قمة في الذوق والتعاون، والمكان رايق وأجواؤه تفتح النفس، والأصناف لذيذة ومختارة بعناية. كوفي يستاهل الزيارة أكثر من مرة.</p>
+        <div class="who"><div class="av">R</div><div><div class="nm">Reem Ro</div><div class="src">Google</div></div></div>
+      </div>
+      <div class="rev rv">
+        <span class="qmark">”</span>
+        <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+        <p class="tx">القهوة مرة لذيذة، والحلا جربنا التشيز بيكان والبايتس — يمي! والبيكان لا يُعلى عليه، لذيذ وخفيف.</p>
+        <div class="who"><div class="av">س</div><div><div class="nm">sara</div><div class="src">Google</div></div></div>
+      </div>
+    </div>
+    <p class="rev-foot rv">تقييم <b>4.3 من 5</b> بناءً على <b>187</b> مراجعة على خرائط Google</p>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="loc">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:right;margin:0 0 54px">
+      <span class="eyebrow">الموقع · Find Us</span>
+      <h2 class="h-sec">زورونا في تبوك</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-info rv">
+        <div class="row"><div class="loc-ic"><i class="ph-bold ph-map-pin"></i></div><div><strong>العنوان</strong><p>شارع عمرو بن العاص، حي المصيف<br>تبوك ٤٧٣٢١، المملكة العربية السعودية</p></div></div>
+        <div class="row"><div class="loc-ic"><i class="ph-bold ph-clock"></i></div><div><strong>أوقات العمل</strong><p>يوميًا حتى ١٢ منتصف الليل</p></div></div>
+        <div class="row"><div class="loc-ic"><i class="ph-bold ph-coffee"></i></div><div><strong>المميّز</strong><p>قهوة مختصة · V60 · ماتشا · شكو بايتس</p></div></div>
+        <div class="row"><div class="loc-ic"><i class="ph-bold ph-storefront"></i></div><div><strong>الخدمة</strong><p>تناول في المقهى · طلب خارجي · توصيل</p></div></div>
+        <div class="loc-actions">
+          <a href="https://www.google.com/maps/place/olio/@28.4396353,36.5511267,17z/data=!4m7!3m6!1s0x15a9b30026f6b779:0x90b43bc36d1dfeda!8m2!3d28.4396353!4d36.5511267!16s%2Fg%2F11y01ydmzv" target="_blank" rel="noopener" class="btn btn-burg"><i class="ph-bold ph-navigation-arrow"></i> الاتجاهات</a>
+          <a href="#menu" class="btn btn-line"><i class="ph-bold ph-coffee"></i> المختارات</a>
+        </div>
+      </div>
+      <div class="map-wrap rv">
+        <iframe src="https://www.google.com/maps?q=28.4396353,36.5511267&z=16&output=embed" title="موقع أويلو على الخريطة" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">olio</div>
+        <p>أويلو · قهوة مختصة في تبوك. عِزُّنا بجودتنا — قهوة محمّصة بإتقان، أصناف مختارة بعناية، وأجواء أنيقة تبدأ منها لحظتك.</p>
+        <div class="foot-soc">
+          <a href="https://www.google.com/maps/place/olio/@28.4396353,36.5511267,17z/data=!4m7!3m6!1s0x15a9b30026f6b779:0x90b43bc36d1dfeda!8m2!3d28.4396353!4d36.5511267!16s%2Fg%2F11y01ydmzv" target="_blank" rel="noopener" aria-label="خرائط Google"><i class="ph-bold ph-map-pin"></i></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>تصفّح</h4>
+        <ul>
+          <li><a href="#intro">عن أويلو</a></li>
+          <li><a href="#menu">المختارات</a></li>
+          <li><a href="#atmos">الأجواء</a></li>
+          <li><a href="#reviews">آراؤكم</a></li>
+          <li><a href="#loc">الموقع</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>زورونا</h4>
+        <ul>
+          <li><a href="#loc">حي المصيف، تبوك</a></li>
+          <li><a href="#loc">يوميًا حتى منتصف الليل</a></li>
+          <li><a href="#loc">قهوة مختصة وحلا</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 olio · أويلو — جميع الحقوق محفوظة</p>
+      <span class="en">Your moment starts here</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATS -->
+<div class="floats">
+  <button class="fbtn f-top" id="ftop" aria-label="للأعلى"><i class="ph-bold ph-arrow-up"></i></button>
+  <a href="https://www.google.com/maps/place/olio/@28.4396353,36.5511267,17z/data=!4m7!3m6!1s0x15a9b30026f6b779:0x90b43bc36d1dfeda!8m2!3d28.4396353!4d36.5511267!16s%2Fg%2F11y01ydmzv" target="_blank" rel="noopener" class="fbtn f-map" aria-label="الاتجاهات"><i class="ph-bold ph-map-pin"></i></a>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lb" role="dialog" aria-modal="true">
+  <button class="x" id="lbx" aria-label="إغلاق">✕</button>
+  <button class="ar-btn prev" id="lbp" aria-label="السابق"><i class="ph ph-caret-right"></i></button>
+  <img id="lbimg" src="" alt="">
+  <button class="ar-btn next" id="lbn" aria-label="التالي"><i class="ph ph-caret-left"></i></button>
+</div>
+
+<script>
+const nav=document.getElementById('nav'),ftop=document.getElementById('ftop');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>60);ftop.classList.toggle('show',scrollY>500)},{passive:true});
+ftop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+const mnav=document.getElementById('mnav');
+document.getElementById('burger').onclick=()=>{mnav.classList.add('open');document.body.style.overflow='hidden'};
+const closeM=()=>{mnav.classList.remove('open');document.body.style.overflow=''};
+document.getElementById('mclose').onclick=closeM;
+document.querySelectorAll('#mnav a:not([href^="#"])').forEach(a=>a.addEventListener('click',closeM));
+
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(!t)return;
+  e.preventDefault();
+  const wasOpen=mnav.classList.contains('open');
+  closeM();
+  const go=()=>scrollTo({top:t.getBoundingClientRect().top+scrollY-72,behavior:'smooth'});
+  wasOpen?setTimeout(go,60):go();
+}));
+
+const gs=[...document.querySelectorAll('.g')],lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');let ci=0;
+const show=i=>{ci=(i+gs.length)%gs.length;lbimg.src=gs[ci].dataset.src;lbimg.alt=gs[ci].dataset.cap||''};
+const openLb=i=>{show(i);lb.classList.add('open');document.body.style.overflow='hidden'};
+const closeLb=()=>{lb.classList.remove('open');document.body.style.overflow=''};
+gs.forEach((g,i)=>g.onclick=()=>openLb(i));
+document.getElementById('lbx').onclick=closeLb;
+document.getElementById('lbp').onclick=()=>show(ci-1);
+document.getElementById('lbn').onclick=()=>show(ci+1);
+lb.onclick=e=>{if(e.target===lb)closeLb()};
+addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')show(ci-1);if(e.key==='ArrowLeft')show(ci+1)});
+</script>
+</body>
+</html>
